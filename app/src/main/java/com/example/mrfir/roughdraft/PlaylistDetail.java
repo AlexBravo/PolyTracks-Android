@@ -88,6 +88,7 @@ public class PlaylistDetail extends AppCompatActivity implements
 
         //Instantiate spotify crap, and get access token
         SpotifyApi api = new SpotifyApi();
+
         api.setAccessToken(CredentialsHandler.getToken(this));
         spotify = api.getService();
 
