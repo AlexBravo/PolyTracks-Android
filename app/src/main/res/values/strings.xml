@@ -109,4 +109,5 @@
     </string-array>
     <string name="title_activity_playlist_defail">PlaylistDefail</string>
     <string name="title_activity_playlist_detail">PlaylistDetail</string>
+    <string name="title_activity_add_song">AddSong</string>
 </resources>

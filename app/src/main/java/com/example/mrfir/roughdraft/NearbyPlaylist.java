@@ -111,6 +111,7 @@ public class NearbyPlaylist extends AppCompatActivity implements Serializable {
                         intent.putExtra("playlistName", playlist.name);
                         intent.putExtra("playlistTrackURI", getTrackURIFromPlaylist(playlist));
                         intent.putExtra("Credentials", Credentials);
+                        intent.putExtra("PlaylistUri", playlist.id);
 
 
 

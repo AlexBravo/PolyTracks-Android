@@ -13,6 +13,7 @@
         android:theme="@style/AppTheme.AppBarOverlay"
         android:id="@+id/appBarLayout">
 
+
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:title="Test"
@@ -30,6 +31,86 @@
         android:layout_below="@+id/appBarLayout"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
+
     </ListView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/PlayButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="22dp"
+        android:clickable="true"
+        android:padding="80dp"
+        android:paddingBottom="80dp"
+        android:paddingEnd="80dp"
+        android:paddingLeft="80dp"
+        android:paddingRight="80dp"
+        android:paddingStart="80dp"
+        android:paddingTop="80dp"
+        app:fabSize="mini"
+        app:layout_anchor="@+id/nestedScrollView"
+        app:layout_anchorGravity="center_vertical"
+        app:srcCompat="@drawable/ic_media_play_light" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/NextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|left"
+        android:clickable="true"
+        app:fabSize="mini"
+        app:layout_anchor="@+id/nestedScrollView"
+        app:layout_anchorGravity="center_vertical|right"
+        app:srcCompat="@drawable/ic_media_play_light"
+        android:layout_alignTop="@+id/PlayButton"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="84dp"
+        android:layout_marginEnd="84dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="22dp"
+        android:padding="80dp"
+        android:paddingBottom="80dp"
+        android:paddingEnd="80dp"
+        android:paddingLeft="80dp"
+        android:paddingRight="80dp"
+        android:paddingStart="80dp"
+        android:paddingTop="80dp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/PrevButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|left"
+        android:layout_weight="1"
+        android:clickable="true"
+        app:fabSize="mini"
+        app:layout_anchor="@+id/nestedScrollView"
+        app:layout_anchorGravity="center_vertical|right"
+        app:srcCompat="@drawable/ic_media_play_light"
+        android:layout_marginLeft="79dp"
+        android:layout_marginStart="79dp"
+        android:layout_alignTop="@+id/NextButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/addButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="13dp"
+        android:layout_marginRight="13dp"
+        android:layout_weight="1"
+        android:clickable="true"
+        app:fabSize="mini"
+        app:srcCompat="@android:drawable/ic_menu_add"
+        android:layout_above="@+id/list2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
 
 </RelativeLayout>

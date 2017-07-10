@@ -27,7 +27,8 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
+        app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior"
+        android:id="@+id/nestedScrollView">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -38,4 +39,6 @@
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v4.widget.NestedScrollView>
+
+
 </android.support.design.widget.CoordinatorLayout>

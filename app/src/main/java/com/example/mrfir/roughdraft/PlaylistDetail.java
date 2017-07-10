@@ -44,6 +44,9 @@ public class PlaylistDetail extends AppCompatActivity implements
     private Player mPlayer;
     String Credentials;
     private static final String REDIRECT_URI = "RoughDraft://callback";
+    int tPosition = 0;
+    boolean isPlaying = false;
+    String playlistURI;
 
     // Request code that will be used to verify if the result comes from correct activity
     // Can be any integer
@@ -86,6 +89,10 @@ public class PlaylistDetail extends AppCompatActivity implements
         TrackURI = new String[playlistTrackURI.size()];
         TrackURI = playlistTrackURI.toArray(TrackURI);
 
+
+        //Grab playlist URI
+        playlistURI = (String) getIntent().getSerializableExtra("PlaylistUri");
+
         //Instantiate spotify crap, and get access token
         SpotifyApi api = new SpotifyApi();
 
@@ -115,6 +122,8 @@ public class PlaylistDetail extends AppCompatActivity implements
                 Log.e("MainActivity", "Could not initialize player: " + throwable.getMessage());
             }
         });
+
+
         //When you click the Playlist information it will pass the name of the playlist and tracks
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -122,16 +131,97 @@ public class PlaylistDetail extends AppCompatActivity implements
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 // TODO Auto-generated method stub
+                tPosition = position;
                 String Slecteditem= TrackURI[+position];
                 Toast.makeText(getApplicationContext(), Slecteditem, Toast.LENGTH_SHORT).show();
                 //Intent intent = new Intent(PlaylistDetail.this, PlaylistDetail.class);
-                mPlayer.playUri(null, "spotify:track:"+ Slecteditem, 0, 0);
+                mPlayer.playUri(null, "spotify:playlist:"+ playlistURI, 0, 0);
 
 
 
 
             }
         });
+        //Play button to play currently selected playlist
+        FloatingActionButton playFab = (FloatingActionButton) findViewById(R.id.PlayButton);
+        //Setting OnClick Listener to The Floating Action Button
+        playFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(isPlaying == false) {
+                    isPlaying = true;
+                    String Slecteditem = TrackURI[tPosition];
+                    mPlayer.playUri(null, "spotify:track:" + Slecteditem, 0, 0);
+                }
+                else {
+                    isPlaying = false;
+                    mPlayer.pause(new Player.OperationCallback() {
+                        @Override
+                        public void onSuccess() {
+                            Toast.makeText(getApplicationContext(),
+                                    "Pausing",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onError(Error error) {
+
+                        }
+                    });
+                }
+
+
+            }
+        });
+
+        //Next button to play currently selected playlist
+        FloatingActionButton nextFab = (FloatingActionButton) findViewById(R.id.NextButton);
+        //Setting OnClick Listener to The Floating Action Button
+        nextFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPlayer.skipToNext(new Player.OperationCallback() {
+                    @Override
+                    public void onSuccess() {
+                        Toast.makeText(getApplicationContext(),
+                                "Next Track",
+                                Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(Error error) {
+
+                    }
+                });
+            }
+        });
+
+        //Play button to play currently selected playlist
+        FloatingActionButton prevFab = (FloatingActionButton) findViewById(R.id.PrevButton);
+        //Setting OnClick Listener to The Floating Action Button
+        prevFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                mPlayer.skipToPrevious(new Player.OperationCallback() {
+                    @Override
+                    public void onSuccess() {
+                        Toast.makeText(getApplicationContext(),
+                        "Previous Track",
+                                Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(Error error) {
+
+                    }
+                });
+            }
+        });
+
+
+
     }
 
     public void CreatePlayer(){
